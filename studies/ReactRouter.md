@@ -87,4 +87,40 @@ For route matching, we deal with basically 2 components: `Route` and `Switch`. `
 
 When using it surrounded by `<Switch></Switch>`, the routes will be iterated over and the first one that matches will be rendered.
 
+## Route rendering props
+
+You have `component`, `render` and `children`, with the first two being the most used. `component` should receive a React component or stateless functional component. `render` receives inline functions or components that need specific arguments. **Do not** use an inline function in `component`, as it will make a mess in the mount lifecycle.
+
+``` javascript
+<Route
+  exact
+  path="/"
+  component={Home}
+/>
+<Route 
+  path="/about"
+  render={
+    props => <About {...props} extra={someVariable} />
+  }
+/> // do
+<Route
+  path="/contact"
+  component={props => <Contact {...props} extra={someVariable} />}
+/> // don't
+```
+
+## Navigation
+
+You can use `Link` or `NavLink`, both are translated into an anchor (`<a></a>`) element. However, the latter allows for an `active` class to be passed for when the route matches, like so:
+
+``` javascript
+<NavLink to="/react" activeClassName="hurray">React</NavLink>
+```
+
+You can also use `Redirect` to force navigation. Once it's rendered, it navigates to its `to` prop.
+
+``` javascript
+<Redirect to="/about" />
+```
+
 (stopped at: https://reacttraining.com/react-router/web/guides/basic-components)

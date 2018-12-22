@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, NavLink, Route } from 'react-router-dom';
+import { BrowserRouter, NavLink, Switch, Route } from 'react-router-dom';
 import logo from './logo.svg';
 
 import './App.css';
@@ -27,9 +27,10 @@ class App extends Component {
               <li><NavLink to='/meme' activeClassName='selected'>Meme</NavLink></li>          
               <li><NavLink to='/nothing' activeClassName='selected'>Nothing</NavLink></li>          
             </ul>
-
-            <Route exact path='/meme' render={props => <Meme url={memeUrl} {...props} />} />
-            <Route exact path='/nothing' render={() => <div>NOTHING TO SEE HERE.</div>} />
+            <Switch>
+              <Route exact path='/meme' render={props => <Meme url={memeUrl} {...props} />} />
+              <Route exact path='/nothing' render={() => <div>NOTHING TO SEE HERE.</div>} />
+            </Switch>
           </div>
         </BrowserRouter>
       </div>

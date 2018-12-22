@@ -2,10 +2,9 @@ import React from 'react';
 
 
 export const Meme = ({ url }) => {
-  console.log(':::: url:', url);
   return (
     <div>
-      <img src={url} />
+      <img alt="Some random meme." src={url} />
     </div>);
 }
 
